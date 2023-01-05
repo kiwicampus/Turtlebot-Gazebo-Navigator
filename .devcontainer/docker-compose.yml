@@ -1,0 +1,65 @@
+# version: "3.7"
+version: "2.3"
+services:
+  turtlebot-navigator:
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
+    user: "ada"
+    working_dir: /home/ada
+
+    network_mode: host
+
+    ports:
+      - "80:80"
+      - "8080:8080"
+      # - 0.0.0.0:443:443
+      # - 0.0.0.0:8080:8080/tcp
+      - 0.0.0.0:4567:4567/tcp
+
+    expose:
+      - 443
+      - 80
+      - 4567
+
+    init: true
+    privileged: true
+
+    environment:
+      - DISPLAY=$DISPLAY
+      # for WINDOWS for connecting to X Server to be able to launch GUIs
+      #- DISPLAY=host.docker.internal:0.0
+      - QT_X11_NO_MITSHM=1
+      - UDEV=1
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,display
+    volumes:
+      - ..:/workspace
+
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # Enable GUI environments
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+      # Enable kernel modules (v4l2loopback)
+      - /lib/modules:/lib/modules
+
+      # Enable creating/reading inside docker new devices
+      - /dev:/dev
+
+    # Add devices to be share in container
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+
+    # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+    # Overrides default command so things don't shut down after the process ends.
+    # command: sleep infinity 
+    stdin_open: true
+    tty: true
+
+    command: "/bin/bash"
