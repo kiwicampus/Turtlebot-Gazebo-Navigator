@@ -3,17 +3,17 @@ waypoints:
     pose:
       x: -0.25
       y: 2.0
-    track: restaurant.mp4
+    track: waiting.wav
     wait_time: 5.0
   customer:
     pose:
       x: 2.0
       y: -0.5
-    track: customer.mp4
+    track: pick_up.wav
     wait_time: 5.0
   parking:
     pose:
       x: -1.0
       y: -1.5
-    track: parking.mp4
+    track: parking.wav
     wait_time: 5.0

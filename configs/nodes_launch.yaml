@@ -1,0 +1,31 @@
+NODE_NAV2:
+  file: tb_launch
+  from_launch: 1
+  launch: 1
+  package: tb_bringup
+  launch_arguments: 
+    low_level: True
+NODE_INTERFACES:
+  launch: 1
+  node_executable: interfaces_node
+  package: interfaces
+  respawn: true
+  respawn_delay: 5.0
+NODE_LOW_LEVEL_COMMANDER:
+  launch: 0
+  node_executable: low_level_commander_node
+  package: low_level_nav2_commander
+  respawn: true
+  respawn_delay: 5.0
+NODE_HIGH_LEVEL_COMMANDER_CPP:
+  launch: 0
+  node_executable: high_level_commander_node
+  package: high_level_nav2_commander_cpp
+  respawn: true
+  respawn_delay: 5.0
+NODE_HIGH_LEVEL_COMMANDER_PY:
+  launch: 0
+  node_executable: high_level_commander_node
+  package: high_level_nav2_commander_py
+  respawn: true
+  respawn_delay: 5.0
