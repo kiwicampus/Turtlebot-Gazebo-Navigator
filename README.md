@@ -56,14 +56,12 @@ The main idea of the project is to build a simple navigation system with Nav2 an
 
 This project aims to assess your ability to develop new features in complex software systems using ROS2 and Nav2 as a case study. When we review your project we will assess how well understood the systems in nav2 that you used so be ready to answer some theoretical questions. 
 
-The project will comprise three sections that will be independent of each other, so if you feel stuck on one of them feel free to jump to the next one. Each section will have some extra points that will allow your project to stand out. Additionally to the project’s functionality, which account for 80% of the total grade, we will perform a general evaluation of
+The project will comprise three sections that will be as independent of each other as possible, so if you feel stuck on one of them feel free to jump to the next one. Each section will have some extra points that will allow your solution to stand out. Additionally to the project’s functionality, which account for 80% of the total grade, we will perform a general evaluation of
 
 - [10%] The way you structure your solution (nice OOP will be rewarded)
 - [5%] How you write documentation
 - [3%] The use you make of git
 - [2%] The code style (use a linter)
-
-Explain how the final deliverable should look like and what they are expected to present
 
 ## **Dependencies**
 
@@ -79,9 +77,30 @@ You can also use other IDEs but note that all the project dependencies are insta
 
 The simulator has been tested on a computer having a core i3 processor and no GPU, so you shouldn’t run into issues if you don’t have a super pro computer. However, if you have a small processor we do recommend setting ubuntu to work in performance mode and keeping your computer plugged into the AC adapter at all times.
 
-A recommendation is to use VS Code as the main IDE for development. Make sure you also have installed in your host:
-
 ## **General Guidelines**
+
+Before you start follow the instructions on the [running_dev_container](docs/running_dev_container.md) document to get everything up and running. You will know you are ready to get to work when you can move the simulated turtlebot around using `rviz`.
+
+### [**40%**] Section 1
+
+In this section you are expected to move the turtlebot programmatically using nav2's controller, planner and behavior servers directly (which we call low-level interfaces) by completing the code on a python package we have made for you. At the end of this section your robot should move between two waypoints when calling the python navigator package.
+
+Follow the instructions on [section 1](docs/section1.md) to complete this section.
+
+### [**60%**] Section 2
+
+After completing section 1 you may be thinking that using python for putting together the low-level interfaces into a navigation application may not be the best idea. To know how nav2 solves the problem in this section you are expected to move the turtlebot trough a set of waypoints using the BT navigator server. Unlike the above interfaces, the BT navigator handles all the low level logic you did by hand using a behavior tree and receives only your goal (this is the server `rviz` uses as well). 
+
+In this section you will have to develop all the code from the ground up. We will provide one python and one C++ empty packages that have the build system ready for what you will need to do; you can choose to solve this section using python **OR** C++, however if you use python your grades will be lower by a factor of 0.7. This means that if everything works but you did your code in python you will make 3.5/5.0, while if you did it in C++ you will make 5.0/5.0. To be clear once again, you **DON'T** have to solve everything in Python and C++, if it works in one of them you are good to go.
+
+Follow the instructions on [section 2](docs/section2.md) to complete this section.
+### [**Extra-50%**] Section 3
+
+In this section you will have to write a custom goal checker plugin and use it to play a sound each time the robot gets to a waypoint.
+
+Follow the instructions on [section 2](docs/section3.md) to complete this section.
+
+
 
 Section 1: Low-level interaction (python, provide node skeleton)
 

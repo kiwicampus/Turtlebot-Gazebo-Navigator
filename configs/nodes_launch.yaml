@@ -4,7 +4,7 @@ NODE_NAV2:
   launch: 1
   package: tb_bringup
   launch_arguments: 
-    low_level: True
+    low_level: false
 NODE_INTERFACES:
   launch: 1
   node_executable: interfaces_node

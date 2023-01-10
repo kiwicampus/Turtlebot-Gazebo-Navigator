@@ -6,7 +6,13 @@ If you have your [VSCode](https://code.visualstudio.com/) with the right extensi
 <img src="https://user-images.githubusercontent.com/43115782/87437367-d5806200-c5b3-11ea-9bf2-836e45f46ed8.gif" alt="building_dev-container" width="1200">
  
 When the process is done you can open a terminal in the dev-container going to the menu bar `Terminal` and then `New Terminal`. Congratulations now you have everything that we use for our deployments.
+
+To check out everything is working as it should navigate to the `/workspace/configs` folder and run `bash start.sh`, a utility script we provide for running everything you need. After a while a `gazebo` and a `rviz` window should spawn and you should be able to move the robot as the gif below shows. This may take too long the first time you run it, causing for the turtlebot never to spawn in the gazebo world; if this happens to you just kill everything by pressing `Ctrl+C` and launch it again.
+
+If you are running into more issues now or while solving the project check out the [Troubleshooting](#troubleshooting) section. If your problem still persists please open an issue in the repo and we will do our best to help you. If there's something wrong from our side you will get a bonus of **+3%** for pointing it out.
  
+![Ready](https://user-images.githubusercontent.com/71234974/211570809-b5c59b3a-2246-4dcc-99ca-2e6b20813b85.gif)
+
 
 <br />
 
@@ -39,57 +45,45 @@ Find a brief explanation on how to run our stack in your IDE and the explanation
  
 In order to launch locally (Inside your IDE), please locate into the `configs/` folder in the dev-container terminal and execute the following prompt command:
  
-     $ bash startPlanner.sh start
+     $ bash start.sh
 
 *Note:* if you've already launch and compile the whole stack and there's no a *hot* modification inside the stack, it's possible to avoid the entire compiling step running:
 
-     $ bash startPlanner.sh start no-build
+     $ bash start.sh -b 0
 
-This bash performs the following steps to launch the *Planner* stack:
- 
-1. Sources the [`env_vars.sh`](https://github.com/kiwicampus/2D-Test-Track-Planner/blob/main/planner/configs/env_vars.sh) which contains the *Kiwibot* local environment variables.
-2. Launch ros2 with the specified node in [*nodes_launch.yaml:*](https://github.com/kiwicampus/2D-Test-Track-Planner/tree/main/planner/configs/nodes_launch.yaml)
+This bash performs the following steps to launch the *tb_navigator* stack:
 
-For ROS 2 development workspace
- 
-1. Sources ROS Foxy and clean the older development workspace (If enabled).
-2. Builds the development workspace at [`planner/ros2/`](planner/ros2)
+1. Sources ROS Humble and clean the older development workspace (If enabled).
+2. Builds the development workspace at [`rover/ros2/`](../rover/ros2)
 3. Sources the resulting setup in the install folder `. install/setup.bash`
-4. Executes [`ros2 launch /configs/planner.launch.py`](https://github.com/kiwicampus/2D-Test-Track-Planner/blob/main/planner/configs/planner.launch.py)
+4. Executes [`ros2 launch /configs/tb_navigator.launch.py`](../configs/tb_navigator.launch.py) with the specified node in [*nodes_launch.yaml:*](../configs/nodes_launch.yaml). You can choose which nodes to launch by modifying the `launch` field on each node's entry on said `yaml`.
  
-You can compile and launch everything by your own if you already have a background and experience with ROS/ROS2, but for those who want everything easy, and fast the bash script will set up and run everything for you. With the [``startPlanner.sh``](https://github.com/kiwicampus/2D-Test-Track-Planner/blob/main/planner/configs/startPlanner.sh) bash script you can run the stack of the project, this file has all instruction to download third-party packages, other required dependencies if they're missing, and setup, source, and run the ros2 workspace, launching the nodes specified in the file ``nodes_launch.yaml`` (File created when you start or run the script for the first time).
+You can compile and launch everything by your own if you already have a background and experience with ROS/ROS2, but for those who want everything easy, and fast the bash script will set up and run everything for you. With the [`start.sh`](../configs/start.sh) bash script you can run the stack of the project, this file has all instruction to download third-party packages, other required dependencies if they're missing, and setup, source, and run the ros2 workspace, launching the nodes specified in the file `nodes_launch.yaml` (File created when you start or run the script for the first time).
  
+## **Troubleshooting**
 
-When the script finishes the building, and the compilation process you'll see the planner window with default configs as shown next (in the SOLUTION VERSION):
- 
- <p align="center">
-     <img src="https://user-images.githubusercontent.com/43115782/114318886-99dbdf80-9ad4-11eb-947a-e7c6e417fec2.gif" alt="test_Track_map" width="400"/> 
-</p>
-  
-You can press the keys-numbers to start a routine, to run a new one just close and reopen the program again, or just wait until the routine is finished.
+### GUI applicationsv (gazebo, rviz) not spawning
 
-*Note (Window is not displaying):* if you are having troubles or errors getting the user interface window, read about [Docker image with OpenCV with X11 forwarding for GUI](https://marcosnietoblog.wordpress.com/2017/04/30/docker-image-with-opencv-with-x11-forwarding-for-gui/) for explanations, run the prompt command (Do not this in the dev-container terminal):
+If you are having troubles or errors getting the user interface window, read about [Docker image with OpenCV with X11 forwarding for GUI](https://marcosnietoblog.wordpress.com/2017/04/30/docker-image-with-opencv-with-x11-forwarding-for-gui/) for explanations, run the prompt command (Do not this in the dev-container terminal):
  
      $ xhost +
 
-the error is something like this: 
+the error usually looks something like this: 
 
-     [graphics-3] (planner_window:12789): Gdk-ERROR **: 20:17:14.340: The program 'planner_window' received an X Window System error.
-     [graphics-3] This probably reflects a bug in the program.
-     [graphics-3] The error was 'BadAccess (attempt to access private resource denied)'.
-     [graphics-3]   (Details: serial 277 error_code 10 request_code 130 (MIT-SHM) minor_code 1)
-     [graphics-3]   (Note to programmers: normally, X errors are reported asynchronously;
-     [graphics-3]    that is, you will receive the error a while after causing it.
-     [graphics-3]    To debug your program, run it with the GDK_SYNCHRONIZE environment
-     [graphics-3]    variable to change this behavior. You can then get a meaningful
-     [graphics-3]    backtrace from your debugger if you break on the gdk_x_error() function.)
-     [ERROR] [graphics-3]: process has died [pid 12789, exit code -5, cmd '/workspace/planner/ros2/install/graphics/lib/graphics/graphics --ros-args'].
+     Gdk-ERROR **: 20:17:14.340: The program 'xxx' received an X Window System error.
 
 If the error remains, run the bash file until the window is shown, it could take even 10 times.
 
-*Note (Audio is not reproducing):* if you are having troubles getting audio from the virtual environment, please create a issue with the error description. But also check the audio device is not busy, or try connecting and disconnecting headsets in the audio port.
+### Gzserver dying
 
-*Note (Launching specific nodes):* if you want to launch just a single node or some of them or the whole stack, go to the file ``nodes_launch.yaml`` and change the key *launch* for 1 to launch and 0 to don't launch. this could be useful when you are testing some nodes or just a single node.
+Sometimes gzserver may die silently. This is usuall happens because another instance of gzserver was already running. If that is the case type on a terminal in the container `pkill -f -9 gzserver` and check on the system monitor that gzserver is no longer running.
+
+### Audio not playing
+
+While developing the project you will need to play some sounds in your computer using the [interfaces package](../rover/ros2/src/interfaces/) we provide you. If you are having troubles getting audio from the virtual environment is very likely that your audio device is already in use by another application (ex: spotify, your browser running youtube, etc) if you get an error like the one shown below try closing all applications you suspect may be using your audio device and connecting and disconnecting headsets.
+
+![Screenshot from 2023-01-06 12-58-32](https://user-images.githubusercontent.com/71234974/211584344-8f53331a-0c56-4467-afcc-59adc66e11ac.png)
+
 
 
 <br />

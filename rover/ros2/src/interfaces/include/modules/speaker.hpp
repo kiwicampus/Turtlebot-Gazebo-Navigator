@@ -69,24 +69,6 @@ private:
     */
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr m_done_pub;
 
-
-    /********************************************
-     * END CODE
-     ********************************************/
-
-    /*!
-        Publisher to ensure the sound as Done
-    */
-    /********************************************
-     * DEFINE THIS AMAZING PUBLISHER
-     ********************************************/
-
-    /********************************************
-     * END CODE
-     ********************************************/
-    /*!
-        Attributes
-    */
     std::string m_sound_device = (getEnv("SOUND_DEVICE", "sysdefault:CARD=PCH"));
     unsigned int channels = std::stoi(getEnv("SPEAKER_CHANNELS", "2"));
     unsigned int rate = std::stoi(getEnv("SPEAKER_RATE", "44100"));
