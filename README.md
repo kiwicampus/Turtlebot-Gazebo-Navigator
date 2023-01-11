@@ -98,49 +98,8 @@ Follow the instructions on [section 2](docs/section2.md) to complete this sectio
 
 In this section you will have to write a custom goal checker plugin and use it to play a sound each time the robot gets to a waypoint.
 
-Follow the instructions on [section 2](docs/section3.md) to complete this section.
+Follow the instructions on [section 3](docs/section3.md) to complete this section.
 
-
-
-Section 1: Low-level interaction (python, provide node skeleton)
-
-Point 1 - Use the controller server to move the robot
-The controller server’s input is a path and its output is the linear and angular velocity the robot should have to follow that path.
-At this point, you will have to have the robot follow a short straight path using the controller server
-Details about the specific TODOs and some conceptual questions,. Gifs on how things should look like
-
-
-Point 2 - Use the planner server to move the robot to a waypoint
-The planner server’s input is a goal and its output is a path. At this point you will have to use a planner server to calculate a path to a goal and then pass this path to a controller server (replan every second)
-Details about the specific TODOs and some conceptual questions. Gifs on how things should look like
-
-Point 3 - Use behavior server to make the robot spin on its goal
-The behavior server holds different behaviors so it does not have a predefined input or output. It's an action server holder that runs certain routines when called so they depend on the specific  action. At this point, you will have to make the robot spin 180 degrees once it gets to its goal.
-Details about the specific TODOs and some conceptual questions. Gifs on how things should look like
-
-
-Section 2: High-level interaction (python or C++, C++ gives more points, a node from the ground up)
-If you completed section 1 successfully you may be wondering if using these action servers by hand is the best way to create a complete navigation system. Nav2 maintainers thought it wasn’t and they created the bt navigator: a module that interacts with all these action servers through a user-programmable behavior tree. 
-
-Point  1 - Move the robot to a waypoint using NavigateToPose
-Navigate to pose is an action server that takes in a pose and runs the action servers we used in part 1 following the logic on the navigate_to_pose_w_replanning_and_recovery behavior tree. At this point, you will have to use this action server to move the robot to a waypoint.
-Details about the specific TODOs and some conceptual questions. Navigation-commander like node, do something with the feedback like plotting, etc,. Gifs on how things should look like
-
-Point  2 - Change the behavior tree to make the robot spin on its goal
-Now you will have to achieve the same you did in point 3 part 1 but using the behavior tree. Change the xml file so the robot spins 180 degrees when it gets to its goal.
-Details about the specific TODOs and some conceptual questions. Optional: use Groot to show the BT. Gifs on how things should look like
-
-
--
-
-Point  3 - Use a different planner and controller, including the velocity smoother
-To demonstrate the advantages of nav2 modular architecture you will have to re-run the navigation using the RPP controller and the smac_2d planner. Additionally, you will have to use the velocity smoother.
-Details about the specific TODOs and some conceptual questions. Gifs on how things should look like
-
-
-Section 3: Custom plugin (C++, provide skeleton or detailed tutorial)
-Point  4 - Write a custom plugin (to define which)
-In this last point you will have to write a plugin for the XX server. Link to tutorial
 
 ### **License**
  
