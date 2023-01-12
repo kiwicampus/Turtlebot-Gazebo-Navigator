@@ -32,7 +32,7 @@ Tools like ttygif can help, but check out Asciinema for a more sophisticated met
 ![GitHub last commit](https://img.shields.io/github/last-commit/kiwicampus/Turtlebot-Gazebo-Navigator)
 ![Made from](https://img.shields.io/badge/From-Colombia-Yellow)
 
-### **Kiwibot**
+## **Kiwibot**
 
 Hi Human! 
 
@@ -52,22 +52,24 @@ This modular architecture makes it really easy to swap the algorithmic component
 
 You will probably use Nav2 in your everyday work at Kiwibot so consider this project as the beginning of your training.
 
-The main idea of the project is to build a simple navigation system with Nav2 and a simulated Turtlebot3 on gazebo. You will start using Nav2’s low-level interfaces in order to understand how the system works, and then you will progressively scale up to use its high-level interfaces. In the end, your robot should be able to follow an arbitrary set of waypoints and perform actions when arriving to each of them. 
+The main idea of the project is to build a simple navigation system with Nav2 and a simulated Turtlebot3 on gazebo. You will start using Nav2’s low-level interfaces in order to understand how the system works, and then you will progressively scale up to use its high-level interfaces. In the end, your robot should be able to follow an arbitrary set of waypoints and perform actions when arriving to each of them. According to your skill level you may take 4-6 hours to solve all the tasks we propose.
 
 This project aims to assess your ability to develop new features in complex software systems using ROS2 and Nav2 as a case study. When we review your project we will assess how well understood the systems in nav2 that you used so be ready to answer some theoretical questions. 
 
-The project will comprise three sections that will be as independent of each other as possible, so if you feel stuck on one of them feel free to jump to the next one. Each section will have some extra points that will allow your solution to stand out. Additionally to the project’s functionality, which account for 80% of the total grade, we will perform a general evaluation of
+The project will comprise three sections that will be as independent of each other as possible, so if you feel stuck on one of them feel free to jump to the next one. Each section will have some extra points that will allow your solution to stand out and you to score extra points. Doing everything perfectly + the extra points will allow you to get up to double the score you would if you only did the required points. Additionally to the project’s functionality, which account for 80% of the total grade, we will perform a general evaluation of
 
 - [10%] The way you structure your solution (nice OOP will be rewarded)
 - [5%] How you write documentation
 - [3%] The use you make of git
 - [2%] The code style (use a linter)
 
+You may be asked to defend your project solution with some members of the team on a live meeting, so be ready to explain your code and answer some questions around it.
+
 ## **Dependencies**
 
 For running the project you will need:
 
-1. A computer with Ubuntu 22 or 20. Though you can certainly use other ubuntu distributions or virtual machines on another OS we won't provide support if you are not using the above.
+1. A computer with Ubuntu 22 or 20. Though you can certainly use other ubuntu distributions or virtual machines on another OS we won't provide support if you are not using the former.
 1. [docker-ce](https://docs.docker.com/install/)
 2. [docker-compose](https://docs.docker.com/compose/install/)
 
@@ -81,27 +83,33 @@ The simulator has been tested on a computer having a core i3 processor and no GP
 
 Before you start follow the instructions on the [running_dev_container](docs/running_dev_container.md) document to get everything up and running. You will know you are ready to get to work when you can move the simulated turtlebot around using `rviz`.
 
-### [**40%**] Section 1
+### [**40% (60% with extra)**] Section 1
 
 In this section you are expected to move the turtlebot programmatically using nav2's controller, planner and behavior servers directly (which we call low-level interfaces) by completing the code on a python package we have made for you. At the end of this section your robot should move between two waypoints when calling the python navigator package.
 
+You can score up to 20% extra on the overall project grade doing the bonus points we propose.
+
 Follow the instructions on [section 1](docs/section1.md) to complete this section.
 
-### [**60%**] Section 2
+### [**60% (90% with extra)**] Section 2
 
 After completing section 1 you may be thinking that using python for putting together the low-level interfaces into a navigation application may not be the best idea. To know how nav2 solves the problem in this section you are expected to move the turtlebot trough a set of waypoints using the BT navigator server. Unlike the above interfaces, the BT navigator handles all the low level logic you did by hand using a behavior tree and receives only your goal (this is the server `rviz` uses as well). 
 
-In this section you will have to develop all the code from the ground up. We will provide one python and one C++ empty packages that have the build system ready for what you will need to do; you can choose to solve this section using python **OR** C++, however if you use python your grades will be lower by a factor of 0.7. This means that if everything works but you did your code in python you will make 3.5/5.0, while if you did it in C++ you will make 5.0/5.0. To be clear once again, you **DON'T** have to solve everything in Python and C++, if it works in one of them you are good to go.
+In this section you will have to develop all the code from the ground up. We will provide one python and one C++ empty packages that have the build system ready for what you will need to do; you can choose to solve this section using python **OR** C++, however if you use python your grades will be lower by a factor of 0.7. This means that if everything works but you did your code in python you will make 3.5/5.0, while if you did it in C++ you will make 5.0/5.0. To be clear once again, you **DON'T** have to solve everything in Python **AND** C++, if it works in **one of them** you are good to go.
+
+You can score up to 30% extra on the overall project grade doing the bonus points we propose. Bonuses wont be affected by the language you choose.
 
 Follow the instructions on [section 2](docs/section2.md) to complete this section.
-### [**Extra-50%**] Section 3
+### [**50% extra**] Section 3
 
 In this section you will have to write a custom goal checker plugin and use it to play a sound each time the robot gets to a waypoint.
+
+This section is completely optional, but can score up to 30% extra on the overall project grade doing it.
 
 Follow the instructions on [section 3](docs/section3.md) to complete this section.
 
 
-### **License**
+## **License**
  
 This project is licensed under [Apache 2](LICENSE), and thus all contributions will be licensed as such
 as per clause 5 of the Apache 2 License:
@@ -188,11 +196,4 @@ Portfolio | Businessinsider | The New York Times | Techcrunch | Newscientist
 [<img src="https://img.youtube.com/vi/Z4jQc3-psy8/0.jpg" width="200.com/vi/0U3lQ1u-Hd4/0.jpg" width="200">](https://www.youtube.com/watch?v=0U3lQ1u-Hd4)
 [<img src="https://img.youtube.com/vi/VX4ywdUtaI4/0.jpg" width="200">](https://www.youtube.com/watch?v=VX4ywdUtaI4)
 [<img src="https://img.youtube.com/vi/0BHpz8lCFfc/0.jpg" width="200">](https://www.youtube.com/watch?v=0BHpz8lCFfc)
-
-General context about nav2
-Nav2 is a software project that aims to provide autonomous navigation capabilities to mobile robots. It comprises several modules (servers) with smaller tasks that can be combined together to achieve this goal or can be used independently to provide specific functionalities to the system (ex: localization, path planning, etc).
-
-This modular architecture also makes it really easy to swap the algorithmic component of the different modules, allowing developers to choose the most suited approach for their needs. Since you will have to make heavy use of nav2 is highly recommended that you read its documentation before getting started
-
-
 
