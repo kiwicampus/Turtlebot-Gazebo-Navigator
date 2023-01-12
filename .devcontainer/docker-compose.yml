@@ -32,6 +32,8 @@ services:
       - QT_X11_NO_MITSHM=1
       - UDEV=1
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility,display
+      # Fix audio in gazebo problems
+      - PULSE_SERVER=unix:/run/user/1000/pulse/native
     volumes:
       - ..:/workspace
 
