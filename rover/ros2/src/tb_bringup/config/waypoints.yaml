@@ -9,7 +9,7 @@ waypoints:
     pose:
       x: 2.0
       y: -0.5
-    track: pick_up.wav
+    track: pickup.wav
     wait_time: 5.0
   parking:
     pose:
