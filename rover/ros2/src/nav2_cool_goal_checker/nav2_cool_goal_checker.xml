@@ -1,0 +1,7 @@
+<class_libraries>
+  <library path="nav2_cool_goal_checker">
+    <class type="nav2_cool_goal_checker::CoolGoalChecker" base_class_type="nav2_core::GoalChecker">
+      <description>A cool goal checker that must be developed as part of the hiring process</description>
+    </class>
+  </library>
+</class_libraries>
