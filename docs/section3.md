@@ -1,0 +1,25 @@
+# Section 3: Custom Goal Checker Plugin
+In this section you will be asked to create a custom plugin for Nav2's controller server. This section is worth an extra 50% for the project. The plugin you will be creating is used as a goal checker. The workflow for the goal checker is the following:
+1. The robot will navigate towards a goal. It will initially check that the robot arrives to the goal coordinates.
+1. If the robot reach the goal, it will not mark the goal as reached. A service needs to be called when the goal is reached.
+1. Someone will call the service that will mark the goal as reached. Calling the service will play a sound.
+
+## Development
+Before you start, we recommend you to read the tutorials Nav2 has on [writing new plugins for the controller server](https://navigation.ros.org/plugin_tutorials/docs/writing_new_nav2controller_plugin.html). Although this is aimed to write a new controller for the server, most of the concepts and ideas from this tutorial will help you in writing the plugin. To develop the plugin, we suggest you to solve the next tasks:
+
+
+1. [0.0%] Check the [`nav2_cool_goal_checker`](../rover/ros2/src/nav2_cool_goal_checker/) package, there you will find the skeleton for the plugin you will write. We will provide you with an almost-working code so you can focus on developing a nice logic for the plugin. However, we recommend you to get an understanding on how the plugin works by checking out the files we provided you with.
+1. [0.0%] Focus on the [header](../rover/ros2/src/nav2_cool_goal_checker/include/nav2_cool_goal_checker/plugins/nav2_cool_goal_checker.hpp) and [implementation](../rover/ros2/src/nav2_cool_goal_checker/plugins/nav2_cool_goal_checker.cpp) files for the plugin. There you will find the definition of six (6) standard functions that are used in Nav2's plugins:
+    - `CoolGoalChecker()`: this is the constructor for the class. If you have to initialize an attribute for the class, this is where you should do it.
+    - `initialize()`: this is where you will initialize the plugin. There are some parameters for this method that you will need to take into account.
+    - `reset()`: say that the robot has reached its goal. If it moves to a further goal, we should reset the checker. This is the function in which the reset logic is done.
+    - `isGoalReached()`: this is the function that gets called when we want to check if the goal has been reached. This function returns a boolean indicating if the goal has been reached.
+    - `getTolerances()`: this function is used for the goal checker to have access on the information about the goal tolerances. We have to be honest with you, this function will not affect a lot of the logic in the goal checker. Make sure that you understand what this does and you fill the values accordingly.
+    - `dynamicParametersCallback()`: this function is used to dynamically update the node parameters.
+1. [2.5%] Start with the easy part of the plugin: making the robot play a sound. Create a publisher to the topic that is used by the `interfaces` node. Remember to configure the topic name and message type accordingly.
+1. [2.5%] Create the assert service. This service will be used to set the goal as checked. Think of what service definition might be useful for this functionality. Do not mind any assertion functionality at this point.
+1. [10%] Make the goal checker consider the coordinates of the robot and the goal. This might sound scary but there is a goal checker that does so, why don't you take a look into it and use what might work in this case like the [`simple_goal_checker`](https://github.com/ros-planning/navigation2/blob/main/nav2_controller/include/nav2_controller/plugins/simple_goal_checker.hpp). You could even use that goal checker as the base for yours.
+1. [20%] Make the robot mark the goal as reached when you call the service. Modify your code in order to prevent it from marking the goal as reached when the coordinates are met, but rather to do so when the service is called. Also take into consideration the case in which the goal is not reached and the service is called.
+1. [10%] Make the robot play a sound when the goal is reached. You should be able to do this by using the publisher you created before when the service gets called.
+1. [5.0%] Change the goal checker in the [parameters file](../rover/ros2/src/tb_bringup/params/tb_params.yaml). Check the controller server parameters and modify them in order to use the asserted goal checker. If you can't tell what the name of the plugin is, take a look in the bottom of the implementation file. 
+1. [0.0%] Compile the goal checker and run the autonomous navigation. You should be able to use your goal checker and see if it works. Call the service when the robot reaches its goals and also while it is navigating toward them. It should work in every case.

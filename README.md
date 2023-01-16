@@ -52,7 +52,7 @@ This modular architecture makes it really easy to swap the algorithmic component
 
 You will probably use Nav2 in your everyday work at Kiwibot so consider this project as the beginning of your training.
 
-The main idea of the project is to build a simple navigation system with Nav2 and a simulated Turtlebot3 on gazebo. You will start using Nav2’s low-level interfaces in order to understand how the system works, and then you will progressively scale up to use its high-level interfaces. In the end, your robot should be able to follow an arbitrary set of waypoints and perform actions when arriving to each of them. According to your skill level you may take 4-6 hours to solve all the tasks we propose.
+The main idea of the project is to build a simple navigation system with Nav2 and a simulated Turtlebot3 on gazebo. You will start using Nav2’s low-level interfaces in order to understand how the system works, and then you will progressively scale up to use its high-level interfaces. In the end, your robot should be able to follow an arbitrary set of waypoints and perform actions when arriving to each of them. According to your skill level you may take 5-10 hours to solve all the tasks we propose.
 
 This project aims to assess your ability to develop new features in complex software systems using ROS2 and Nav2 as a case study. When we review your project we will assess how well understood the systems in nav2 that you used so be ready to answer some theoretical questions. 
 
@@ -73,15 +73,17 @@ For running the project you will need:
 1. [docker-ce](https://docs.docker.com/install/)
 2. [docker-compose](https://docs.docker.com/compose/install/)
 
-As you may have inferred by the above dependencies the project runs on a docker container. We recommend using [VS Code](https://code.visualstudio.com/) as the main IDE for development. Install the [Remote development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extensions and follow the `running_dev_container` instructions to write and test code inside the docker container.
+As you may have inferred by the above dependencies the project runs on a docker container. We recommend using [VS Code](https://code.visualstudio.com/) as the main IDE for development. Install the [Remote development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extensions and follow the [`running_dev_container`](docs/running_dev_container.md) instructions to write and test code inside the docker container.
 
-You can also use other IDEs but note that all the project dependencies are installed in the [docker image](.devcontainer/Dockerfile) so you may have a hard time setting all that up on a different environment (VS Code does everything for you). Also we expect to be able to run your solution in the same docker image in our computers.
+You can also use other IDEs but note that all the project dependencies are installed in the [docker image](.devcontainer/Dockerfile) so you may have a hard time setting all that up on a different environment (VS Code does everything for you). Also we expect to be able to run your solution in the same docker image in our computers using vscode.
 
 The simulator has been tested on a computer having a core i3 processor and no GPU, so you shouldn’t run into issues if you don’t have a super pro computer. However, if you have a small processor we do recommend setting ubuntu to work in performance mode and keeping your computer plugged into the AC adapter at all times.
 
 ## **General Guidelines**
 
 Before you start follow the instructions on the [running_dev_container](docs/running_dev_container.md) document to get everything up and running. You will know you are ready to get to work when you can move the simulated turtlebot around using `rviz`.
+
+TODO: Nico, don't forget to delete this [solution branch](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ### [**40% (60% with extra)**] Section 1
 
@@ -93,7 +95,7 @@ Follow the instructions on [section 1](docs/section1.md) to complete this sectio
 
 ### [**60% (90% with extra)**] Section 2
 
-After completing section 1 you may be thinking that using python for putting together the low-level interfaces into a navigation application may not be the best idea. To know how nav2 solves the problem in this section you are expected to move the turtlebot trough a set of waypoints using the BT navigator server. Unlike the above interfaces, the BT navigator handles all the low level logic you did by hand using a behavior tree and receives only your goal (this is the server `rviz` uses as well). 
+After completing section 1 you may be thinking that using python for putting together the low-level interfaces into a navigation application may not be the best idea. To get to know how nav2 solves the problem in this section you are expected to move the turtlebot trough a set of waypoints using the BT navigator server and the `/navigate_to_pose` action. Unlike the above interfaces, the BT navigator handles all the low level logic you did by hand using a behavior tree and receives only your goal (this is the server `rviz` uses as well). 
 
 In this section you will have to develop all the code from the ground up. We will provide one python and one C++ empty packages that have the build system ready for what you will need to do; you can choose to solve this section using python **OR** C++, however if you use python your grades will be lower by a factor of 0.7. This means that if everything works but you did your code in python you will make 3.5/5.0, while if you did it in C++ you will make 5.0/5.0. To be clear once again, you **DON'T** have to solve everything in Python **AND** C++, if it works in **one of them** you are good to go.
 
